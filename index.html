@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>key code</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="wrap">
+      <div data-key="65" class="no">
+        A
+      </div>
+      <div data-key="83" class="no">
+        S
+      </div>
+      <div data-key="68" class="no">
+        D
+      </div>
+      <div data-key="70" class="no">
+        F
+      </div>
+  </div>
+    <script>
+      function removeEffect(e) {
+        var remove_style;
+        if (e.which === 1) {
+          remove_style = this;
+        } else {
+          remove_style = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        }
+        if (!remove_style) return;
+        remove_style.classList.remove('tap');
+      }
+      function keyboardKeyCode(e){
+        var insert;
+        if (e.which === 1) {
+         insert = this;
+        } else {
+         insert = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        }
+        if (!insert) return;
+        insert.classList.add('tap');
+      }
+      window.addEventListener('keydown',keyboardKeyCode);
+      window.addEventListener('keyup',removeEffect);
+      const select_input = document.querySelectorAll('.no');
+      select_input.forEach(key => key.addEventListener('mousedown',keyboardKeyCode));
+      select_input.forEach(key => key.addEventListener('mouseup',removeEffect));
+    </script>
+  </body>
+</html>
